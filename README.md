@@ -38,6 +38,7 @@ git clone https://github.com/NERanger/denso_robot_ros.git
 If you launch the ros driver without CALSET, the following errors are highly possible to occur, which makes COBOTTA unavailable
 
 > [ERROR] [1553080035.957341120]: Failed to motor on. (84500073)
+
 > [ERROR] [1553080051.802591987]: Action client not connected: cobotta/arm_controller/follow_joint_trajectory
 
 After CALSET every joint will be at/exceed its software limit, which may cause the following error
@@ -60,6 +61,7 @@ roslaunch denso_robot_bringup cobotta_bringup.launch sim:=false ip_address:=192.
 ## others
 
 > [ERROR] [1553080074.135850]: Execution failed: [Errno 2] No such file or directory
+
 > ERROR: cannot launch node of type [warehouse_ros/mongo_wrapper_ros.py]: can't locate node [mongo_wrapper_ros.py] in package [warehouse_ros]
 
 these 2 errors can be ignored 
