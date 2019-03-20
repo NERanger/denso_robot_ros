@@ -33,7 +33,7 @@ git clone https://github.com/NERanger/denso_robot_ros.git
 
 ## Launch
 
-1. Use teaching panel to perform CALSET (initialize joint position)
+### Use teaching panel to perform CALSET (initialize joint position)
 
 If you launch the ros driver without CALSET, the following errors are highly possible to occur, which makes COBOTTA unavailable
 
@@ -48,12 +48,12 @@ When the error occurs COBOTTA could not move anymore
 
 Known solution to this problem is that to use teaching panel to hold back every joint a little, then COBOTTA can be launched normally
 
-2. Launch COBOTTA ros driver
+### Launch COBOTTA ros driver
 
 ```bash
 roslaunch denso_robot_bringup cobotta_bringup.launch sim:=false ip_address:=192.168.0.1
 ```
-3. Perform motion planning
+### Perform motion planning
 
 > Sometimes a goal will cause "Failed to Write" error, I guess it is due to the exceed of joint software limit. When this error occurs, you need to relaunch the ros driver
 
