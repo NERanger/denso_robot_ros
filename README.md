@@ -60,12 +60,27 @@ roslaunch denso_robot_bringup cobotta_bringup.launch sim:=false ip_address:=192.
 
 ## others
 
+1. these 2 errors can be ignored 
+
 > [ERROR] [1553080074.135850]: Execution failed: [Errno 2] No such file or directory
 
 > ERROR: cannot launch node of type [warehouse_ros/mongo_wrapper_ros.py]: can't locate node [mongo_wrapper_ros.py] in package [warehouse_ros]
 
-these 2 errors can be ignored 
+2. Current version does not provide the function to move the gripper, there is a offical solution for now, which did not work when I try it.
+```bash
+roslaunch denso_robot_bringup <launch file of COBOTTA> sim:=false ip_address:=<COBOTTA's IP Address>
 
+roslaunch bcap_service bcap_service.launch ip_address:=<COBOTTA's IP Address>
+
+rosservice call /bcap_service '{func_id: 3, vntArgs: [{vt: 8, value: "b-CAP"}, {vt: 8, value: "CaoProv.DENSO.VRC"}, {vt: 8, value: "localhost"}, {vt: 8, value: ""}] }
+```
+After these steps the following feedback from cobotta is expected
+
+> HRESULT: 0 vntRet: vt: 19 value: "<controller handle>"
+  
+```bash
+rosservice call /bcap_service '{func_id: 17, vntArgs: [{vt: 19, value: "<controller handle>"}, {vt: 8, value: "HandMoveA"}, {vt: 8195, value: "30, 100"}] }'
+```
 ## Issues
 
 https://github.com/DENSORobot/denso_robot_ros/issues
