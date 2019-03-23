@@ -77,7 +77,7 @@ The following command moves the gripper to maximum width (30mm).
 
 Target width depends on the last parameter 
 
-> value:"<target width>, 100"
+> value:"30, 100"
 
 ```bash
 rosservice call /bcap_service '{func_id: 17, vntArgs: [{vt: 19, value: "<controller handle>"}, {vt: 8, value: "HandMoveA"}, {vt: 8195, value: "30, 100"}] }'
