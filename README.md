@@ -85,7 +85,7 @@ rosservice call /bcap_service '{func_id: 17, vntArgs: [{vt: 19, value: "<control
 
 ## others
 
-1. these 2 errors can be ignored 
+These 2 errors can be ignored 
 
 > [ERROR] [1553080074.135850]: Execution failed: [Errno 2] No such file or directory
 
