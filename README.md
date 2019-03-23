@@ -58,6 +58,31 @@ roslaunch denso_robot_bringup cobotta_bringup.launch sim:=false ip_address:=192.
 
 > Sometimes a goal will cause "Failed to Write" error, I guess it is due to the exceed of joint software limit. When this error occurs, you need to relaunch the ros driver
 
+### 4.Move gripper
+
+Current version does not provide the function to move the gripper in moveit, but there is a offical solution for current use
+
+```bash
+roslaunch denso_robot_bringup <launch file of COBOTTA> sim:=false ip_address:=<COBOTTA's IP Address>
+
+roslaunch bcap_service bcap_service.launch ip_address:=<COBOTTA's IP Address>
+
+rosservice call /bcap_service '{func_id: 3, vntArgs: [{vt: 8, value: "b-CAP"}, {vt: 8, value: "CaoProv.DENSO.VRC"}, {vt: 8, value: "localhost"}, {vt: 8, value: ""}] }'
+```
+After these steps the following feedback from cobotta is expected
+
+> HRESULT: 0 vntRet: vt: 19 value: "<controller handle>"
+
+The following command moves the gripper to maximum width (30mm).
+
+Target width depends on the last parameter 
+
+> value:"<target width>, 100"
+
+```bash
+rosservice call /bcap_service '{func_id: 17, vntArgs: [{vt: 19, value: "<controller handle>"}, {vt: 8, value: "HandMoveA"}, {vt: 8195, value: "30, 100"}] }'
+```
+
 ## others
 
 1. these 2 errors can be ignored 
@@ -66,21 +91,7 @@ roslaunch denso_robot_bringup cobotta_bringup.launch sim:=false ip_address:=192.
 
 > ERROR: cannot launch node of type [warehouse_ros/mongo_wrapper_ros.py]: can't locate node [mongo_wrapper_ros.py] in package [warehouse_ros]
 
-2. Current version does not provide the function to move the gripper, there is a offical solution for now, which did not work when I try it.
-```bash
-roslaunch denso_robot_bringup <launch file of COBOTTA> sim:=false ip_address:=<COBOTTA's IP Address>
 
-roslaunch bcap_service bcap_service.launch ip_address:=<COBOTTA's IP Address>
-
-rosservice call /bcap_service '{func_id: 3, vntArgs: [{vt: 8, value: "b-CAP"}, {vt: 8, value: "CaoProv.DENSO.VRC"}, {vt: 8, value: "localhost"}, {vt: 8, value: ""}] }
-```
-After these steps the following feedback from cobotta is expected
-
-> HRESULT: 0 vntRet: vt: 19 value: "<controller handle>"
-  
-```bash
-rosservice call /bcap_service '{func_id: 17, vntArgs: [{vt: 19, value: "<controller handle>"}, {vt: 8, value: "HandMoveA"}, {vt: 8195, value: "30, 100"}] }'
-```
 ## Issues
 
 https://github.com/DENSORobot/denso_robot_ros/issues
