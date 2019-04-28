@@ -71,7 +71,7 @@ rosservice call /bcap_service '{func_id: 3, vntArgs: [{vt: 8, value: "b-CAP"}, {
 ```
 After these steps the following feedback from cobotta is expected
 
-> HRESULT: 0 vntRet: vt: 19 value: "<controller handle>"
+> HRESULT: 0 vntRet: vt: 19 value: " <controller handle> "
 
 The following command moves the gripper to maximum width (30mm).
 
